@@ -1,0 +1,113 @@
+body{
+    background:#c0c0c0;
+    display:table-cell;
+    vertical-align:middle;
+    height:100vh;
+    width:100vw;
+    margin:0;
+}
+#card {
+    width: 35vw;
+    height: 60vw;
+    perspective:1000px;
+    transition:2s;
+    transform-origin:100% 50%;
+}
+#left{
+    width: 100%;
+    height: 100%;
+    transition: 2s;
+    transform-style: preserve-3d;
+    transform-origin:left;
+    margin-left:25vw;
+}
+#card:hover{
+    transform:rotateZ(-25deg) scale(0.9);
+}
+#card:hover #left{
+    transform: rotateY(-180deg);
+    margin-left:50vw;
+}
+#card:hover #right-front{
+    margin-left:50vw;
+}
+#left-front,#left-back,#right-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    color: rgba(255,255,255,0.9);
+    text-align:center;
+    overflow:hidden;
+}
+#left-front {
+    background: -webkit-linear-gradient(left,#111,#800);
+}
+
+#left-back {
+    background:-webkit-linear-gradient(left,#243b55,#141e30);
+    transform: rotateY(180deg);
+}
+#right-front{
+    background:-webkit-linear-gradient(right,#243b55,#141e30);
+    z-index:-1;
+    width:30vw !important;
+    margin-left:25vw;
+    margin-top:-60vw;
+    transition:2s;
+    display:flex;
+    align-items:center;
+    padding-left:2.5vw;
+    padding-right:2.5vw;
+}
+#hr{
+    width:80%;
+    height:2.5px;
+    border-radius:50%;
+    background:-webkit-linear-gradient(left,gold,white,gold);
+}
+h3,h1{
+    font-size:5vw;
+}
+h1{
+    font-family:great vibes;
+}
+h2{
+    font-size:6vw;
+}
+h3{
+    margin-top:px;
+    z-index:3;
+    font-family:parisienne;
+}
+.firework{
+    position:fixed;
+    height:7.5px;
+    width:7.5px;
+    border-radius:50%;
+}
+.particle{
+    position:fixed;
+    height:3px;
+    width:3px;
+    background:red;
+}
+#left-front center
+{
+  background: -webkit-linear-gradient(left,gold,white,gold);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;  
+}
+h5
+{
+    font-size: 3.5vw;
+}
+.star
+{
+    height: 5px;
+    width: 5px;
+    background: -webkit-radial-gradient(gold,orange,red);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    position: absolute;
+    z-index: 2;
+}

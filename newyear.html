@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Happy New Year 2021</title>
+        <link rel="stylesheet" type="text/css" href="newyear.css">
+    </head>
+    <body>
+        <div id="card">
+            <div id="left">
+                <div id="left-front">
+                <center>
+                    <h2 style="font-variant:small-caps">happy</h2>
+                    <h1>New Year</h1><h3>2021</h3>
+                    <div id="hr"></div>
+                    <h5>(Coding DNA)</h5>
+                </center>
+                </div>
+                <div id="left-back"></div>
+            </div>
+            <div id="right-front">
+                <h3>“May the New Year bless you with health, wealth, and happiness.”</h3>
+            </div>
+        </div>
+        <script>
+        const fireworks = []
+        const particles =[]
+        class Particle{
+    constructor(){
+        this.x=0
+        this.y=0
+        this.speed=Math.random()*2+3
+        this.angle=Math.random()*Math.PI*2
+        this.vx=Math.cos(this.angle)*this.speed
+        this.vy=-Math.sin(this.angle)*this.speed
+        this.el=document.createElement("div")
+        this.el.className="particle"
+        this.el.style.top=this.y+"px"
+        this.el.style.left=this.x+"px"
+        this.el.style.backgroundColor=`rgb(${Math.random()* 255},${Math.random()* 255},${Math.random()* 255})`
+        document.body.appendChild(this.el)
+        setTimeout(()=>{
+        this.el.remove()
+        particles.splice(particles.indexOf(this),1)
+        //const fireworks = []
+        } ,300)
+    }
+    setPosition(x,y){
+        this.x=x
+        this.y=y
+        this.el.style.top=this.y+"px"
+        this.el.style.left=this.x+"px"
+    }
+    update(){
+        this.setPosition(this.vx+this.x,this.vy+this.y)
+        this.el.style.top=this.y+"px"
+        this.el.style.left=this.x+"px"
+        this.vy+=0.15
+    }
+    }
+            class Firework{
+    constructor(){
+        this.fx=window.innerWidth/2
+        this.fy=window.innerHeight-10
+        this.x=Math.random()*window.innerWidth 
+        this.y=Math.random()*window.innerHeight/3
+        this.el=document.createElement("div")
+        this.el.className="firework"
+        this.el.style.top=this.y+"px"
+        this.el.style.left=this.x+"px"
+        this.el.style.background=`-webkit-radial-gradient(white,rgb(${Math.random()* 255},${Math.random()* 255},${Math.random()* 255})`
+        document.body.appendChild(this.el)
+        setTimeout(()=>{
+        this.el.remove()
+        fireworks.splice(fireworks.indexOf(this),1)
+        this.explode()
+        },800)
+    }
+    explode(){
+        for(var i=0;i<50;i++){
+        const particle = new Particle()
+        particle.setPosition(this.x,this.y)
+        particles.push(particle)
+        }
+    }
+    update(){
+        this.fy -= (this.fy - this.y) * 0.05
+        this.fx -= (this.fx - this.x) * 0.05
+        this.el.style.top=this.fy+"px"
+        this.el.style.left=this.fx+"px"
+        this.y+=0.5
+    }
+}
+setInterval(function(){
+fireworks.forEach((firework)=>firework.update())
+particles.forEach((particle)=>particle.update())
+},10)
+
+setInterval(function(){fireworks.push(new Firework())},300)
+class Stars{
+    constructor(x){
+    this.el=document.createElement("div")
+    this.el.className="star"
+    this.el.style.top=Math.random()*75+"vw"
+    this.el.style.left=Math.random()*50+"vw"
+    document.getElementById(x).appendChild(this.el)
+    }
+}
+for(var x=0; x<25; x++){
+    new Stars("left-back")
+    new Stars("right-front")
+}
+</script>
+    </body>
+</html>
